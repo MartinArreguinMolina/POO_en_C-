@@ -128,7 +128,7 @@ class Universitario : public Estudiante{
 	private:
 		string carrera;
 	public:
-		Universitario(int edad , string nombre , string apellidoPaterno , string apellidoMaterno , string grupo , double notaFinal , string carrera) : Estudiante(nombre , edad , apellidoPaterno , apellidoMaterno , grupo , notaFinal){
+		Universitario(string nombre , int edad , string apellidoPaterno , string apellidoMaterno , string grupo , double notaFinal , string carrera) : Estudiante(nombre , edad , apellidoPaterno , apellidoMaterno , grupo , notaFinal){
 			this->carrera = carrera;
 		}
 		
@@ -200,12 +200,37 @@ double pedirSueldo(){
 	return sueldo;
 }
 
+string pedirGrupo(){
+	string grupo;
+	cin >> grupo;
+	
+	return grupo;
+}
+
+double pedirNotaFinal(){
+	double notaFinal;
+	cin >> notaFinal;
+	
+	return notaFinal;
+}
+
+string pedirCarrera(){
+	string carrera;
+	cin >> carrera;
+	
+	return carrera;
+}
+
 vector<Empleado> listaEmpleados;
+vector<Estudiante> listaEstudiante;
+vector<Universitario> listaUniversitario;
 
 void imprimirListaEmpleados(vector<Empleado> listaEmpleados){
 	for(int i = 0; i < listaEmpleados.size(); i++){
 		listaEmpleados.at(i).metodo();
 	}	
+	
+	cout << endl;
 }
 
 
@@ -216,6 +241,9 @@ int main(){
 	string nombre;
 	string apellidoPaterno;
 	string apellidoMaterno;
+	string grupo;
+	string carrera;
+	double notaFinal;
 	int edad;
 	int horasLaborales;
 	double sueldo;
@@ -226,10 +254,11 @@ int main(){
 		cout << "1.Agregar Empleado" << endl;
 		cout << "2.Agregar Estudiante" << endl;
 		cout << "3.Agregar universitario" << endl;
+		cout << "4.Salir" << endl;
 		cout << "Seleccion una opcion: ";
 		cin >> opcion;
 		cout << endl;
-	}while(opcion < 1 || opcion > 3);
+	}while(opcion < 1 || opcion > 4);
 	
 		switch(opcion){
 			case 1:
@@ -241,14 +270,29 @@ int main(){
 				sueldo = pedirSueldo();
 				
 				listaEmpleados.push_back(Empleado(edad , nombre , apellidoPaterno , apellidoMaterno , horasLaborales , sueldo));
-				
-				imprimirListaEmpleados(listaEmpleados);
 				break;
 			case 2:
+				nombre = pedirNombre();
+				apellidoPaterno = pedirApellidoPaterno();
+				apellidoMaterno = pedirApellidoMaterno();
+				edad = pedirEdad();
+				grupo = pedirGrupo();
+				notaFinal = pedirNotaFinal();
+				
+				listaEstudiante.push_back(Estudiante(nombre , edad , apellidoPaterno , apellidoMaterno , grupo , notaFinal));
 				break;
 			case 3:
+				nombre = pedirNombre();
+				apellidoPaterno = pedirApellidoPaterno();
+				apellidoMaterno = pedirApellidoMaterno();
+				edad = pedirEdad();
+				grupo = pedirGrupo();
+				notaFinal = pedirNotaFinal();
+				carrera = pedirCarrera();
+				listaUniversitario.push_back(Universitario(nombre , edad , apellidoPaterno , apellidoMaterno , grupo , notaFinal , carrera));
 				break;
 			case 4:
+				continuarConElMenu = true;
 				break;
 					
 		}
