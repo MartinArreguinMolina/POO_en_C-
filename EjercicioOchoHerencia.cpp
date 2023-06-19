@@ -162,7 +162,7 @@ string pedirNombre(){
 
 string pedirApellidoPaterno(){
 	string apellidoPaterno;
-	cout << "Dame el apellido paterno";
+	cout << "Dame el apellido paterno: ";
 	cin >> apellidoPaterno;
 	
 	return apellidoPaterno;
@@ -202,6 +202,7 @@ double pedirSueldo(){
 
 string pedirGrupo(){
 	string grupo;
+	cout << "Dame el grupo: ";
 	cin >> grupo;
 	
 	return grupo;
@@ -209,6 +210,7 @@ string pedirGrupo(){
 
 double pedirNotaFinal(){
 	double notaFinal;
+	cout << "Dame la nota final: ";
 	cin >> notaFinal;
 	
 	return notaFinal;
@@ -216,6 +218,7 @@ double pedirNotaFinal(){
 
 string pedirCarrera(){
 	string carrera;
+	cout << "Dame la carrera: ";
 	cin >> carrera;
 	
 	return carrera;
@@ -230,6 +233,20 @@ void imprimirListaEmpleados(vector<Empleado> listaEmpleados){
 		listaEmpleados.at(i).metodo();
 	}	
 	
+	cout << endl;
+}
+
+void imprimirListaEstudiante(vector<Estudiante> listaEstudiantes){
+	for(int i = 0; i < listaEstudiantes.size(); i++){
+		listaEstudiantes.at(i).metodo();
+	}
+	cout << endl;
+}
+
+void imprimirListaUniversitario(vector<Universitario> listaUniversitarios){
+	for(int i = 0; i < listaUniversitarios.size(); i++){
+		listaUniversitarios.at(i).metodo();
+	}
 	cout << endl;
 }
 
@@ -254,11 +271,14 @@ int main(){
 		cout << "1.Agregar Empleado" << endl;
 		cout << "2.Agregar Estudiante" << endl;
 		cout << "3.Agregar universitario" << endl;
-		cout << "4.Salir" << endl;
+		cout << "4.Mostrar lista de empleados" << endl;
+		cout << "5.Mostrar lista de estudiantes" << endl;
+		cout << "6.Mostrar lista de universitarios" << endl;
+		cout << "7.Salir" << endl;
 		cout << "Seleccion una opcion: ";
 		cin >> opcion;
 		cout << endl;
-	}while(opcion < 1 || opcion > 4);
+	}while(opcion < 1 || opcion > 7);
 	
 		switch(opcion){
 			case 1:
@@ -292,7 +312,13 @@ int main(){
 				listaUniversitario.push_back(Universitario(nombre , edad , apellidoPaterno , apellidoMaterno , grupo , notaFinal , carrera));
 				break;
 			case 4:
-				continuarConElMenu = true;
+				imprimirListaEmpleados(listaEmpleados);
+				break;
+			case 5:
+				imprimirListaEstudiante(listaEstudiante);
+				break;
+			case 6:
+				imprimirListaUniversitario(listaUniversitario);
 				break;
 					
 		}
